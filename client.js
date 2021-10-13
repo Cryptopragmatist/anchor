@@ -11,17 +11,24 @@ anchor.setProvider(anchor.Provider.local());
 async function main() {
   // #region main
   // Read the generated IDL.
+  /* idl subcommand provides commands for interacting with interface definition files. 
+  It's recommended to use these commands to store an IDL on chain, at a deterministic address, as a function of nothing but the the program's ID.
+  This allow us to generate clients for a program using nothing but the program ID.*/
   const idl = JSON.parse(require('fs').readFileSync('./target/idl/basic_0.json', 'utf8'));
 
   // Address of the deployed program.
   const programId = new anchor.web3.PublicKey('BSx34g4SKLYBrVdGuaw7xJz1yY6dLRhz9r2ZwwQjM1WY');
 
   // Generate the program client from IDL.
+  //a client is the initiator of a request over a network
   const program = new anchor.Program(idl, programId);
 
   // Execute the RPC.
+  /*Remote Procedure Call (RPC) is a protocol that one program can use to request a service
+   from a program located in another computer on a network without having to understand the network's details.*/
+   
   await program.rpc.initialize();
-  // #endregion main
+  // #end region main
 }
 
 console.log('Running client.');
