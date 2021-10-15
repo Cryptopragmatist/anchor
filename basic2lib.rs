@@ -44,3 +44,15 @@ pub struct Counter {
     pub authority: Pubkey,
     pub count: u64,
 }
+
+/*Accounts: derive macro implementing the Accounts trait ,
+allowing a struct to transform from the untrusted &[AccountInfo] slice given to a Solana program into a validated struct of deserialized account types. */
+
+/*#[account]: attribute macro implementing AccountSerialize and AccountDeserialize, automatically prepending a unique 8 byte discriminator to the account array. 
+The discriminator is defined by the first 8 bytes of the Sha256 hash of the account's Rust identifier--i.e., the struct type name--and ensures no account can be substituted 
+for another. */
+/*Account : a wrapper type for a deserialized account implementing AccountDeserialize. 
+Using this type within an Accounts struct will ensure the account is owned by the address defined by declare_id! where the inner account was defined. */
+
+
+
